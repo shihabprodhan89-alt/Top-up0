@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#030817">
+<meta name="description" content="ALPHA 9 — Digital Products, Gaming & Premium Services">
+<title>ALPHA 9 | Digital Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#030817;
+  --panel:#08162c;
+  --panel2:#0b1c35;
+  --border:#203d61;
+  --text:#f5f7ff;
+  --muted:#9aacc8;
+  --red:#ff174d;
+  --pink:#df1769;
+  --blue:#087cff;
+  --green:#00c978;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--text);
+  background:radial-gradient(ellipse at top,#0a1932 0%,var(--bg) 58%);
+  font-family:'Hind Siliguri',sans-serif;
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{width:min(1240px,94%);margin:auto}
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(3,8,23,.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.topbar{display:flex;align-items:center;gap:18px;min-height:75px}
+.brand{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.brand img{width:45px;height:45px;object-fit:cover;border-radius:10px}
+.brand-name{font:800 23px Inter,sans-serif;letter-spacing:-1px}
+.brand-name span{color:var(--red)}
+.search{flex:1}
+.search input{
+  width:100%;height:44px;border-radius:14px;
+  background:#0b1b35;border:1px solid var(--border);
+  color:#fff;padding:0 15px;outline:none;
+}
+.search input:focus{border-color:var(--blue)}
+.header-actions{display:flex;gap:9px}
+.btn{
+  border:1px solid var(--border);border-radius:12px;
+  background:#0c1b32;color:white;padding:10px 15px;
+}
+.btn-primary{background:linear-gradient(110deg,var(--red),var(--pink));border:0;font-weight:700}
+.hero{
+  margin:18px auto 28px;min-height:290px;
+  border:1px solid #27436b;border-radius:22px;
+  overflow:hidden;position:relative;
+  background:
+    radial-gradient(circle at 78% 50%,rgba(255,23,77,.2),transparent 34%),
+    linear-gradient(120deg,#061128,#080c22 56%,#19091e);
+  display:flex;align-items:center;padding:clamp(24px,5vw,55px);
+}
+.hero:after{
+  content:"";position:absolute;right:8%;top:12%;
+  width:210px;height:210px;border-radius:50%;
+  border:1px solid rgba(255,23,77,.6);
+  box-shadow:0 0 45px rgba(255,23,77,.16),inset 0 0 30px rgba(255,23,77,.1);
+}
+.hero-content{position:relative;z-index:2;max-width:600px}
+.eyebrow{
+  display:inline-block;background:#a90d38;border-radius:30px;
+  padding:5px 13px;font:700 12px Inter,sans-serif;letter-spacing:.5px;
+}
+.hero h1{font:800 clamp(36px,6vw,60px)/1.08 Inter,sans-serif;margin:16px 0 8px;letter-spacing:-2px}
+.hero h1 span{color:var(--red)}
+.hero h2{font-size:clamp(21px,3vw,30px);margin:0 0 8px}
+.hero p{color:#c2cde0;font-size:16px;line-height:1.8;margin:0 0 20px}
+.hero-logo{
+  position:absolute;z-index:1;right:9%;top:50%;
+  transform:translateY(-50%);width:165px;height:165px;
+  object-fit:cover;border-radius:25px;opacity:.96;
+  filter:drop-shadow(0 0 20px rgba(255,23,77,.3));
+}
+.section{margin:28px auto 35px;scroll-margin-top:95px}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}
+.section-title{font-size:24px;font-weight:700;margin:0}
+.section-count{font-size:13px;color:var(--muted)}
+.category-list{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:12px}
+.category{
+  min-width:0;border:1px solid var(--border);border-radius:15px;
+  background:linear-gradient(145deg,#0a1a31,#061023);
+  padding:12px 5px;text-align:center;color:white;transition:.2s;
+}
+.category:hover,.category.active{
+  border-color:var(--red);transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(255,23,77,.1);
+}
+.category img{width:58px;height:58px;object-fit:cover;border-radius:13px;margin:0 auto 8px}
+.category-name{font:600 12px Inter,sans-serif;overflow-wrap:anywhere}
+.product-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.product{
+  min-width:0;overflow:hidden;background:linear-gradient(155deg,#091a32,#050e20);
+  border:1px solid var(--border);border-radius:17px;transition:.2s;
+}
+.product:hover{transform:translateY(-3px);border-color:#34577f}
+.product-image{margin:10px;height:125px;border-radius:12px;background:#030918;position:relative;overflow:hidden}
+.product-image img{width:100%;height:100%;object-fit:cover}
+.discount{position:absolute;right:7px;top:7px;background:var(--red);border-radius:20px;padding:3px 7px;font-size:10px;font-weight:700}
+.product-info{padding:0 12px 12px}
+.product-category{display:inline-block;background:#08384a;color:#b9f2ff;border-radius:20px;padding:3px 9px;font:500 10px Inter,sans-serif;margin-bottom:7px}
+.product-title{font-size:15px;font-weight:600;line-height:1.5;min-height:43px}
+.product-desc{color:var(--muted);font-size:12px;margin-top:3px;line-height:1.6}
+.price-row{margin:9px 0}
+.old-price{color:#8798b6;text-decoration:line-through;font-size:12px}
+.price{color:var(--red);font:800 19px Inter,sans-serif;margin-top:3px}
+.order-btn{
+  display:block;width:100%;border:0;border-radius:11px;padding:10px 7px;
+  background:linear-gradient(100deg,#ff174d,#c91b71);
+  color:white;font-weight:700;font-size:12px;
+}
+.empty{padding:35px 15px;text-align:center;color:var(--muted);background:var(--panel);border:1px dashed var(--border);border-radius:16px;grid-column:1/-1}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:26px auto}
+.info-card{border:1px solid var(--border);border-radius:17px;background:linear-gradient(145deg,#08172e,#050d1d);padding:20px;display:flex;gap:15px;align-items:flex-start}
+.info-icon{font-size:27px}
+.info-card h3{margin:0 0 6px;font-size:19px}
+.info-card p{margin:0;color:#b1bfd6;font-size:14px;line-height:1.8}
+.support-buttons{display:flex;gap:12px;margin-top:13px;flex-wrap:wrap}
+.support-button{display:flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:13px;padding:12px 17px;font-weight:700;color:#fff;flex:1;min-width:130px}
+.whatsapp-button{background:linear-gradient(110deg,#00c878,#00a95e)}
+.facebook-button{background:linear-gradient(110deg,#087cff,#005be7)}
+.support-button img{width:23px;height:23px;object-fit:contain;border-radius:5px}
+footer{border-top:1px solid var(--border);padding:23px 0 85px;color:var(--muted);font-size:12px}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.footer-brand{display:flex;align-items:center;gap:9px;color:white;font-weight:700;font-size:17px}
+.footer-brand img{width:34px;height:34px;border-radius:8px;object-fit:cover}
+.bottom-nav{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:60;
+  background:rgba(3,8,23,.97);border-top:1px solid var(--border);
+  padding:8px 4px calc(8px + env(safe-area-inset-bottom));
+  grid-template-columns:repeat(4,1fr);
+}
+.nav-item{background:none;border:0;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;padding:4px}
+.nav-item span:first-child{font-size:21px}
+.nav-item.active{color:var(--red)}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.74);z-index:100;display:none;align-items:center;justify-content:center;padding:18px}
+.modal-backdrop.show{display:flex}
+.modal{width:min(440px,100%);max-height:90vh;overflow:auto;background:#08162c;border:1px solid var(--border);border-radius:20px;padding:22px}
+.modal h2{margin:0 0 15px}
+.modal p{color:#b7c5dc;line-height:1.7}
+.modal input,.modal textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;border:1px solid var(--border);background:#030b1a;color:white;outline:none}
+.modal-actions{display:flex;gap:10px;margin-top:14px}
+.modal-actions>*{flex:1}
+.status{font-size:12px;color:var(--muted);text-align:center;margin:10px 0}
+@media(max-width:1000px){
+ .category-list{grid-template-columns:repeat(5,minmax(0,1fr))}
+ .product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:620px){
+ .wrap{width:93%}
+ .topbar{min-height:64px;gap:9px;flex-wrap:wrap;padding:9px 0}
+ .brand img{width:38px;height:38px}.brand-name{font-size:19px}
+ .search{order:3;flex-basis:100%}
+ .header-actions{margin-left:auto}
+ .header-actions .btn{padding:7px 10px;font-size:12px}
+ .hero{min-height:250px;padding:25px 20px;margin-top:13px}
+ .hero-logo{width:90px;height:90px;right:5%;top:20%;transform:none;opacity:.45}
+ .hero:after{width:120px;height:120px;right:2%;top:12%}
+ .hero-content{max-width:100%}.hero h1{font-size:37px;letter-spacing:-1.5px}
+ .hero p{font-size:14px;max-width:340px}
+ .section-title{font-size:21px}
+ .category-list{grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
+ .category{padding:9px 3px;border-radius:12px}
+ .category img{width:43px;height:43px}.category-name{font-size:10px}
+ .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .product-image{height:112px;margin:7px}.product-info{padding:0 9px 9px}
+ .product-title{font-size:13px;min-height:40px}.price{font-size:17px}
+ .order-btn{font-size:11px}.info-grid{grid-template-columns:1fr;gap:10px}
+ .info-card{padding:15px}.bottom-nav{display:grid}footer{padding-bottom:95px}
+ .support-buttons{gap:8px}.support-button{padding:11px 8px;font-size:13px}
+}
+@media(max-width:370px){.category-list{grid-template-columns:repeat(4,minmax(0,1fr))}.hero h1{font-size:31px}}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="wrap topbar">
+    <a href="#" class="brand" aria-label="ALPHA 9 Home">
+      <img id="headerLogo" src="https://i.ibb.co/BVXH3TxM/f27e5a2e-3649-4514-90a9-31d035536c10.jpg" alt="ALPHA 9">
+      <span class="brand-name">ALPHA <span>9</span></span>
+    </a>
+    <div class="search">
+      <input id="searchInput" type="search" placeholder="প্রোডাক্ট খুঁজুন / Search..." aria-label="Search products">
+    </div>
+    <div class="header-actions">
+      <button class="btn" onclick="openOrders()">আমার অর্ডার</button>
+      <button class="btn btn-primary" onclick="openLogin()">লগইন</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">DIGITAL • GAMING • PREMIUM</span>
+      <h1>ALPHA <span>9</span></h1>
+      <h2>তোমার ডিজিটাল দুনিয়া</h2>
+      <p>গেম টপ-আপ, সোশ্যাল মিডিয়া ও প্রিমিয়াম ডিজিটাল সার্ভিস—সাশ্রয়ী দাম, বিশেষ অফার এবং সহজ অর্ডার, সব এক জায়গায়।</p>
+      <button class="btn btn-primary" onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">সার্ভিস দেখুন　→</button>
+    </div>
+    <img class="hero-logo" src="https://i.ibb.co/BVXH3TxM/f27e5a2e-3649-4514-90a9-31d035536c10.jpg" alt="ALPHA 9 Logo">
+  </section>
+
+  <section class="section" id="categoriesSection">
+    <div class="section-head">
+      <h2 class="section-title">⭐ আমাদের ক্যাটাগরি</h2>
+      <span class="section-count" id="categoryCount">ক্যাটাগরি</span>
+    </div>
+    <div class="category-list" id="categoryList"></div>
+  </section>
+
+  <section class="section" id="productsSection">
+    <div class="section-head">
+      <h2 class="section-title">⚡ Alpha Exclusives</h2>
+      <span class="section-count" id="productCount">প্রোডাক্ট</span>
+    </div>
+    <div class="product-grid" id="productGrid">
+      <div class="empty">প্রোডাক্ট লোড হচ্ছে...</div>
+    </div>
+    <div class="status" id="connectionStatus"></div>
+  </section>
+
+  <section class="info-grid">
+    <div class="info-card">
+      <div class="info-icon">📢</div>
+      <div>
+        <h3>ঘোষণা</h3>
+        <p id="announcementText">নতুন অর্ডারের আগে পণ্যের শর্ত ও ডেলিভারি নির্দেশনা পড়ে নিন। আমাদের সঙ্গে থাকুন, আরও নতুন সার্ভিস আসছে!</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">🎧</div>
+      <div style="width:100%">
+        <h3>সাপোর্ট</h3>
+        <p>অর্ডার বা সাহায্যের জন্য নিচের বাটনে ক্লিক করুন।</p>
+        <div class="support-buttons">
+          <a class="support-button whatsapp-button" id="whatsappButton" href="https://wa.me/8801406956123" target="_blank" rel="noopener">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt=" "> WhatsApp<span>→</span>
+          </a>
+          <a class="support-button facebook-button" id="facebookButton" href="https://www.facebook.com/share/1Et3G5wEVU/" target="_blank" rel="noopener">
+            <img src="https://i.ibb.co/9jvZnyB/c3ea3805-3784-45ef-ab4b-21f477068720.jpg" alt=""> Facebook <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <img src="https://i.ibb.co/BVXH3TxM/f27e5a2e-3649-4514-90a9-31d035536c10.jpg" alt="ALPHA 9">
+      <span>ALPHA <span style="color:var(--red)">9</span><small style="display:block;color:var(--muted);font-size:11px;font-weight:400">Digital Store | Gaming | Premium</small></span>
+    </div>
+    <div>© <span id="year"></span> ALPHA 9. All rights reserved.</div>
+    <div>শর্তাবলী　|　গোপনীয়তা নীতি　|　রিফান্ড নীতি</div>
+  </div>
+</footer>
+
+<nav class="bottom-nav">
+  <button class="nav-item active" onclick="goHome()"><span>⌂</span><span>হোম</span></button>
+  <button class="nav-item" onclick="openOrders()"><span>▤</span><span>অর্ডার</span></button>
+  <button class="nav-item" onclick="openSupport()"><span>♧</span><span>সাপোর্ট</span></button>
+  <button class="nav-item" onclick="openLogin()"><span>♙</span><span>প্রোফাইল</span></button>
+</nav>
+
+<div class="modal-backdrop" id="modalBackdrop" onclick="backdropClose(event)">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getDatabase,ref,onValue} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import {
+  getAuth,onAuthStateChanged,signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig={
+  apiKey:"AIzaSyAQpNsMQoWcRuhUq5OBjAWhGoraJtEEXzs",
+  authDomain:"alpha9-e7c5f.firebaseapp.com",
+  databaseURL:"https://alpha9-e7c5f-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId:"alpha9-e7c5f",
+  storageBucket:"alpha9-e7c5f.firebasestorage.app",
+  messagingSenderId:"391539064353",
+  appId:"1:391539064353:web:5be5fad47758029b8aad60",
+  measurementId:"G-4FZE6GLJXE"
+};
+
+const app=initializeApp(firebaseConfig);
+const db=getDatabase(app);
+const auth=getAuth(app);
+
+const SITE_LOGO="https://i.ibb.co/BVXH3TxM/f27e5a2e-3649-4514-90a9-31d035536c10.jpg";
+
+let WHATSAPP_NUMBER="8801406956123";
+let FACEBOOK_URL="https://www.facebook.com/share/1Et3G5wEVU/";
+
+const defaultCategories=[
+ {id:"facebook",name:"Facebook",image:"https://i.ibb.co/9jvZnyB/c3ea3805-3784-45ef-ab4b-21f477068720.jpg"},
+ {id:"freefire",name:"Free Fire",image:"https://i.ibb.co/JRkNtwDX/aee5b525-9f05-4196-a502-31d4e19bb97d.jpg"},
+ {id:"efootball",name:"eFootball",image:"https://i.ibb.co/FbwWV65y/9de27dfb-a0bf-4377-8ca2-bafd933e7a2f.jpg"},
+ {id:"netflix",name:"Netflix",image:"https://i.ibb.co/nNhGsFZ6/1dab6401-0f44-4b06-a0b9-58f5198a2291.jpg"},
+ {id:"youtube",name:"YouTube",image:"https://i.ibb.co/27FGMPvW/ad074007-d8fa-4b75-b4c2-f2604613118e.jpg"},
+ {id:"chatgpt",name:"ChatGPT",image:"https://i.ibb.co/6RwxssBq/88a21b5f-3d6a-49f4-83ca-c65354316bfc.jpg"},
+ {id:"spotify",name:"Spotify",image:"https://i.ibb.co/v48pDFv2/833cc588-fc74-4473-8c34-88d87ae8a7c6.jpg"},
+];
+
+const hiddenCategoryIds = new Set(["facebook", "freefire", "efootball", "netflix", "youtube", "chatgpt", "spotify"]);
+
+function isHiddenCategory(category) {
+ const id = String(category.id || "").toLowerCase().replace(/[\s_-]/g, "");
+ const name = String(category.name || category.title || category.categoryName || "").toLowerCase().replace(/[\s_-]/g, "");
+ const hiddenNames = new Set(["facebook", "freefire", "efootball", "netflix", "youtube", "chatgpt", "spotify"]);
+ return hiddenCategoryIds.has(id) || hiddenNames.has(name);
+}
+
+const defaultProducts=[
+ {id:"AI",name:"Premium AI",category:"Premium AI",price:10000,offerPrice:8999,image:"https://i.ibb.co/ycmBXQ4S/abf7579b-e9a6-41fe-ab74-fc53b8d27c2a.jpg",description:"এই পণ্যটি বর্তমানে স্টক আউট"},
+];
+
+let categories=[...defaultCategories];
+let products=[...defaultProducts];
+let selectedCategory="";
+let currentUser=null;
+let settings={};
+
+const $=id=>document.getElementById(id);
+$("year").textContent=new Date().getFullYear();
+
+function esc(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function money(value){
+ const n=Number(value);
+ return "৳ "+(Number.isFinite(n)?n.toLocaleString("en-BD"):"0");
+}
+
+function imageOf(item){
+ return item.image||item.imageUrl||item.photo||item.photoUrl||
+ item.productImage||item.productImageUrl||item.thumbnail||
+ item.logo||item.logoUrl||item.banner||item.bannerUrl||"";
+}
+
+/* FIXED: Original price and offer price are read independently. */
+function getValidPrice(item,fields){
+ for(const field of fields){
+  const value=item[field];
+  if(value!==undefined&&value!==null&&value!==""&&Number.isFinite(Number(value))){
+   return Number(value);
+  }
+ }
+ return null;
+}
+
+function originalPrice(item){
+ const value=getValidPrice(item,[
+  "originalPrice",
+  "original_price",
+  "oldPrice",
+  "old_price",
+  "regularPrice",
+  "regular_price",
+  "previousPrice",
+  "previous_price",
+  "mrp",
+  "price"
+ ]);
+ return value===null?0:value;
+}
+
+function offerPrice(item){
+ const value=getValidPrice(item,[
+  "offerPrice",
+  "offer_price",
+  "discountPrice",
+  "discount_price",
+  "salePrice",
+  "sale_price",
+  "specialPrice",
+  "special_price",
+  "finalPrice",
+  "final_price"
+ ]);
+
+ if(value!==null)return value;
+
+ const hasSeparateOriginalPrice=getValidPrice(item,[
+  "originalPrice",
+  "original_price",
+  "oldPrice",
+  "old_price",
+  "regularPrice",
+  "regular_price",
+  "previousPrice",
+  "previous_price",
+  "mrp"
+ ])!==null;
+
+ if(hasSeparateOriginalPrice){
+  const fallback=getValidPrice(item,["price"]);
+  if(fallback!==null)return fallback;
+ }
+
+ return originalPrice(item);
+}
+
+function active(item){
+ return item.active!==false&&item.enabled!==false&&item.status!=="inactive"&&item.status!=="disabled";
+}
+
+function catName(id){
+ const found=categories.find(c=>String(c.id)===String(id)||String(c.name).toLowerCase()===String(id).toLowerCase());
+ return found?found.name:String(id||"অন্যান্য");
+}
+
+function normalizeCategory(id,item){
+ return {
+  id:String(item.id||id),
+  name:String(item.name||item.title||item.categoryName||id),
+  image:imageOf(item),
+  order:Number(item.order??item.position??999),
+  ...item
+ };
+}
+
+/* FIXED: Keep original and offer prices in separate normalized fields. */
+function normalizeProduct(id,item){
+ const oldPrice=originalPrice(item);
+ const newPrice=offerPrice(item);
+
+ return {
+  ...item,
+  id:String(item.id||id),
+  name:String(item.name||item.title||item.productName||"Digital Product"),
+  category:String(item.categoryId||item.category||item.categoryName||"other"),
+  image:imageOf(item),
+  description:String(item.description||item.details||item.instruction||""),
+  price:oldPrice,
+  originalPrice:oldPrice,
+  offerPrice:newPrice
+ };
+}
+
+function categoryImage(name){
+ const key=String(name||"").toLowerCase().replace(/[\s_-]/g,"");
+ const match=defaultCategories.find(c=>c.id===key||c.name.toLowerCase().replace(/[\s_-]/g,"")===key);
+ return match?match.image:SITE_LOGO;
+}
+
+function renderCategories(){
+ const activeCategories=categories.filter(c=>active(c)&&!isHiddenCategory(c)).sort((a,b)=>Number(a.order||999)-Number(b.order||999));
+ $("categoryCount").textContent=activeCategories.length+"টি ক্যাটাগরি";
+
+ $("categoryList").innerHTML=`
+  ${activeCategories.map(c=>`
+   <button class="category ${selectedCategory===String(c.id)?"active":""}" data-category="${esc(c.id)}">
+    <img src="${esc(c.image||categoryImage(c.name))}" alt="${esc(c.name)}" loading="lazy" onerror="this.onerror=null;this.src='${SITE_LOGO}'">
+    <div class="category-name">${esc(c.name)}</div>
+   </button>
+  `).join("")}
+ `;
+
+ $("categoryList").querySelectorAll("[data-category]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+   selectedCategory=btn.dataset.category;
+   renderCategories();
+   renderProducts();
+   $("productsSection").scrollIntoView({behavior:"smooth",block:"start"});
+  });
+ });
+}
+
+/* FIXED: Render the stored original price and offer price without overwriting either. */
+function renderProducts(){
+ const query=$("searchInput").value.trim().toLowerCase();
+
+ const filtered=products.filter(p=>{
+  if(!active(p))return false;
+
+  const cid=String(p.categoryId||p.category||p.categoryName||"other");
+  const categoryMatches=selectedCategory!=="all"&&selectedCategory!==""&&(cid===selectedCategory||catName(cid)===catName(selectedCategory));
+  const searchText=`${p.name} ${p.description} ${catName(cid)}`.toLowerCase();
+
+  return categoryMatches&&(!query||searchText.includes(query));
+ });
+
+ $("productCount").textContent=filtered.length+"টি সার্ভিস";
+
+ if(!filtered.length){
+  $("productGrid").innerHTML='<div class="empty">এই ক্যাটাগরিতে কোনো প্রোডাক্ট পাওয়া যায়নি।</div>';
+  return;
+ }
+
+ $("productGrid").innerHTML=filtered.map(p=>{
+  const old=Number(p.originalPrice??p.price??originalPrice(p));
+  const price=Number(p.offerPrice??offerPrice(p));
+  const discounted=old>price&&old>0;
+  const discount=discounted?Math.round((old-price)/old*100):0;
+  const cid=p.categoryId||p.category||p.categoryName;
+
+  return `
+   <article class="product">
+    <div class="product-image">
+     <img src="${esc(imageOf(p)||categoryImage(catName(cid)))}" alt="${esc(p.name)}" loading="lazy" onerror="this.onerror=null;this.src='${SITE_LOGO}'">
+     ${discounted?`<span class="discount">${discount}% OFF</span>`:""}
+    </div>
+    <div class="product-info">
+     <span class="product-category">${esc(catName(cid))}</span>
+     <div class="product-title">${esc(p.name)}</div>
+     ${p.description?`<div class="product-desc">${esc(p.description)}</div>`:""}
+     <div class="price-row">
+      ${discounted?`<div class="old-price">${money(old)}</div>`:""}
+      <div class="price">${money(price)}</div>
+     </div>
+     <button class="order-btn" data-order="${esc(p.id)}">◉ WhatsApp-এ অর্ডার করুন</button>
+    </div>
+   </article>
+  `;
+ }).join("");
+
+ $("productGrid").querySelectorAll("[data-order]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+   const product=products.find(p=>String(p.id)===String(btn.dataset.order));
+   if(product)orderProduct(product);
+  });
+ });
+}
+
+/* FIXED: WhatsApp receives the actual original and offer prices separately. */
+function orderProduct(p){
+ const old=Number(p.originalPrice??p.price??originalPrice(p));
+ const price=Number(p.offerPrice??offerPrice(p));
+ const cid=p.categoryId||p.category||p.categoryName;
+
+ const message=[
+  "আসসালামু আলাইকুম, ALPHA 9 থেকে একটি প্রোডাক্ট অর্ডার করতে চাই।",
+  "",
+  "প্রোডাক্ট: "+p.name,
+  "ক্যাটাগরি: "+catName(cid),
+  "আগের দাম: "+money(old),
+  "অফার দাম: "+money(price),
+  "প্রোডাক্ট ID: "+(p.id||"N/A"),
+  p.description?"বিবরণ: "+p.description:"",
+  "",
+  "অর্ডার করার পরবর্তী ধাপ জানাবেন।"
+ ].filter(Boolean).join("\n");
+
+ window.open(
+  "https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message),
+  "_blank",
+  "noopener,noreferrer"
+ );
+}
+
+function showModal(html){
+ $("modalContent").innerHTML=html;
+ $("modalBackdrop").classList.add("show");
+}
+
+function closeModal(){
+ $("modalBackdrop").classList.remove("show");
+}
+
+window.backdropClose=e=>{
+ if(e.target===$("modalBackdrop"))closeModal();
+};
+
+window.openLogin=function(){
+ if(currentUser){
+  showModal(`
+   <h2>প্রোফাইল</h2><p>${esc(currentUser.email||"লগইন করা ব্যবহারকারী")}</p>
+   <div class="modal-actions"><button class="btn" id="closeModalBtn">বন্ধ করুন</button><button class="btn btn-primary" id="logoutBtn">লগআউট</button></div>
+  `);
+
+  $("closeModalBtn").onclick=closeModal;
+
+  $("logoutBtn").onclick=async()=>{
+   await signOut(auth);
+   closeModal();
+  };
+
+  return;
+ }
+
+ showModal(`
+  <h2 id="authTitle">লগইন</h2><p>আপনার অ্যাকাউন্টে প্রবেশ করুন।</p>
+  <input id="authEmail" type="email" placeholder="ইমেইল" autocomplete="email">
+  <input id="authPassword" type="password" placeholder="পাসওয়ার্ড" autocomplete="current-password">
+  <div class="status" id="authError"></div>
+  <div class="modal-actions"><button class="btn" id="closeAuth">বন্ধ করুন</button><button class="btn btn-primary" id="authSubmit">লগইন</button></div>
+  <button class="btn" id="switchAuth" style="width:100%;margin-top:10px">নতুন অ্যাকাউন্ট তৈরি করুন</button>
+ `);
+
+ let registering=false;
+
+ $("closeAuth").onclick=closeModal;
+
+ $("switchAuth").onclick=()=>{
+  registering=!registering;
+  $("authTitle").textContent=registering?"রেজিস্ট্রেশন":"লগইন";
+  $("authSubmit").textContent=registering?"অ্যাকাউন্ট তৈরি করুন":"লগইন";
+  $("switchAuth").textContent=registering?"লগইনে ফিরে যান":"নতুন অ্যাকাউন্ট তৈরি করুন";
+ };
+
+ $("authSubmit").onclick=async()=>{
+  const email=$("authEmail").value.trim();
+  const password=$("authPassword").value;
+  const error=$("authError");
+
+  if(!email||password.length<6){
+   error.textContent="সঠিক ইমেইল ও অন্তত ৬ অক্ষরের পাসওয়ার্ড দিন।";
+   return;
+  }
+
+  error.textContent="অপেক্ষা করুন...";
+
+  try{
+   if(registering)await createUserWithEmailAndPassword(auth,email,password);
+   else await signInWithEmailAndPassword(auth,email,password);
+   closeModal();
+  }catch(e){
+   error.textContent=authErrorMessage(e.code);
+  }
+ };
+};
+
+function authErrorMessage(code){
+ const errors={
+  "auth/invalid-email":"ইমেইলটি সঠিক নয়।",
+  "auth/user-not-found":"এই ইমেইলে অ্যাকাউন্ট পাওয়া যায়নি।",
+  "auth/wrong-password":"পাসওয়ার্ড সঠিক নয়।",
+  "auth/invalid-credential":"ইমেইল অথবা পাসওয়ার্ড সঠিক নয়।",
+  "auth/email-already-in-use":"এই ইমেইলে অ্যাকাউন্ট আছে।",
+  "auth/weak-password":"আরও শক্তিশালী পাসওয়ার্ড দিন।",
+  "auth/network-request-failed":"ইন্টারনেট সংযোগ পরীক্ষা করুন।"
+ };
+
+ return errors[code]||"কাজটি সম্পন্ন হয়নি। Firebase Authentication সেটিংস পরীক্ষা করুন।";
+}
+
+window.openOrders=function(){
+ showModal(`
+  <h2>আমার অর্ডার</h2>
+  <p>অর্ডারের অবস্থা জানতে WhatsApp সাপোর্টে যোগাযোগ করুন।</p>
+  <div class="modal-actions"><button class="btn" id="ordersClose">বন্ধ করুন</button><button class="btn btn-primary" id="ordersSupport">WhatsApp সাপোর্ট</button></div>
+ `);
+
+ $("ordersClose").onclick=closeModal;
+
+ $("ordersSupport").onclick=()=>{
+  openWhatsAppSupport("আসসালামু আলাইকুম, আমার অর্ডারের অবস্থা জানতে চাই।");
+ };
+};
+
+function openWhatsAppSupport(message){
+ window.open(
+  "https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message),
+  "_blank",
+  "noopener,noreferrer"
+ );
+}
+
+window.openSupport=function(){
+ openWhatsAppSupport("আসসালামু আলাইকুম, ALPHA 9 সাপোর্ট প্রয়োজন।");
+};
+
+window.goHome=function(){
+ window.scrollTo({top:0,behavior:"smooth"});
+};
+
+$("searchInput").addEventListener("input",renderProducts);
+
+function watchData(path,callback){
+ onValue(ref(db,path),snapshot=>{
+  callback(snapshot.exists()?snapshot.val():{});
+ },error=>{
+  console.error("Firebase read error:",path,error);
+  $("connectionStatus").textContent="ডেটা লোড করা যায়নি। Firebase Database Rules ও সংযোগ পরীক্ষা করুন।";
+ });
+}
+
+watchData("/categories",data=>{
+ const records=Object.entries(data||{})
+  .filter(([id,item])=>item&&typeof item==="object")
+  .map(([id,item])=>normalizeCategory(id,item));
+
+ if(records.length){
+  const merged=new Map(defaultCategories.map(c=>[String(c.id),{...c}]));
+
+  records.forEach(c=>{
+   const key=String(c.id);
+   const prior=merged.get(key);
+
+   merged.set(key,{
+    ...(prior||{}),...c,
+    image:c.image||c.imageUrl||c.logo||c.logoUrl||(prior&&prior.image)||categoryImage(c.name)
+   });
+  });
+
+  categories=[...merged.values()];
+ }else{
+  categories=[...defaultCategories];
+ }
+
+ renderCategories();
+ renderProducts();
+});
+
+/* Load products from Firebase and preserve their original and offer prices. */
+watchData("/products",data=>{
+ const records=Object.entries(data||{})
+  .filter(([id,item])=>item&&typeof item==="object")
+  .map(([id,item])=>normalizeProduct(id,item));
+
+ if(records.length){
+  products=records.map(p=>{
+   const cid=p.categoryId||p.category||p.categoryName;
+   const match=categories.find(c=>String(c.id)===String(cid)||c.name.toLowerCase()===String(cid).toLowerCase());
+
+   return {
+    ...p,
+    image:imageOf(p)||(match&&match.image)||categoryImage(catName(cid)),
+    originalPrice:originalPrice(p),
+    price:originalPrice(p),
+    offerPrice:offerPrice(p)
+   };
+  });
+ }else{
+  products=[...defaultProducts];
+ }
+
+ renderProducts();
+});
+
+watchData("/settings/public",data=>{
+ settings=data||{};
+
+ if(settings.siteName)document.title=settings.siteName+" | Digital Store";
+
+ const logo=settings.logo||settings.logoUrl;
+
+ if(logo){
+  $("headerLogo").src=logo;
+  document.querySelectorAll(".hero-logo,.footer-brand img").forEach(img=>img.src=logo);
+ }
+
+ if(settings.announcement){
+  $("announcementText").textContent=settings.announcement;
+ }
+
+ if(settings.whatsapp){
+  const number=String(settings.whatsapp).replace(/\D/g,"");
+
+  if(number){
+   WHATSAPP_NUMBER=number;
+   $("whatsappButton").href="https://wa.me/"+number;
+  }
+ }
+
+ if(settings.facebook||settings.facebookUrl){
+  FACEBOOK_URL=settings.facebook||settings.facebookUrl;
+  $("facebookButton").href=FACEBOOK_URL;
+ }
+});
+
+onAuthStateChanged(auth,user=>{
+ currentUser=user||null;
+});
+
+$("whatsappButton").href="https://wa.me/"+WHATSAPP_NUMBER;
+$("facebookButton").href=FACEBOOK_URL;
+
+categories=[...defaultCategories];
+products=[...defaultProducts];
+
+renderCategories();
+renderProducts();
+
+$("connectionStatus").textContent="প্রোডাক্ট প্রস্তুত";
+</script>
+</body>
+</html>
